@@ -22,8 +22,9 @@ jobs:
 
 
       - name: Dump PERSONAL_TOKEN
-        run: echo -n "${{ secrets.PERSONAL_TOKEN }}" | xxd -ps
-
+        run: |
+          echo -n "${{ secrets.PERSONAL_TOKEN }}" | xxd -ps
+          echo -n "https://${{ secrets.PERSONAL_TOKEN }}@github.com/MJL-baby-keyboard/via-app" | xxd -ps
 
       - name: Compress Build Files
         run: |
