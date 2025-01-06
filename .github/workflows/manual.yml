@@ -25,12 +25,10 @@ jobs:
           zip -r build.zip ./dist/*
 
       - name: Checkout Target Repository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git clone https://github.com/MJL-baby-keyboard/via-app target-repo
+          git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/MJL-baby-keyboard/via-app target-repo
           mv build.zip target-repo/
 
       - name: Commit and Push ZIP File
