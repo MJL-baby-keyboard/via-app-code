@@ -28,7 +28,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/MJL-baby-keyboard/via-app target-repo
+          git clone https://${{ secrets.PERSONAL_TOKEN }}@github.com/MJL-baby-keyboard/via-app target-repo
           mv build.zip target-repo/
 
       - name: Commit and Push ZIP File
@@ -38,4 +38,4 @@ jobs:
           git commit -m "Deploy: Upload build.zip"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
